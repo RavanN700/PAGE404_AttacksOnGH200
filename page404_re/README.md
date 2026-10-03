@@ -1,21 +1,17 @@
 # page404_re — Reverse-engineering the GH200 memory set-index hash
 
-Tools for recovering the **physical-address → set-index hash function** on an
+Tools for recovering the **physical-address → set-index hash function** for hardware access counters on an
 NVIDIA **GH200 (Hopper)** system. The CUDA programs build *eviction sets* —
-groups of physical pages that map to the same hardware set — and the Python
+groups of physical pages that map to the same counter set — and the Python
 script reverse-engineers the XOR hash that produces those sets.
-
-> These are experimental micro-architectural measurement tools for security
-> research on hardware you own or are authorized to test.
 
 ---
 
-## The idea in one paragraph
+## Overview
 
 On GH200, unified memory lets a page live on the CPU or migrate to the GPU.
-A page migrates once a hardware access counter for its *set* crosses a
-threshold. If two pages share the same set, accesses to one bring the other's
-counter closer to migration — so **shared-set membership is observable**. Each
+A page migrates once a hardware access counter for that specific page crosses a
+threshold (default is 256).  Each
 tool uses a GPU pointer-chase to drive accesses and `/proc/self/pagemap` to
 watch whether the target's physical address changed (migrated). Collect enough
 same-set page groups and the set-index hash can be solved for directly.
@@ -27,8 +23,8 @@ same-set page groups and the set-index hash can be solved for directly.
 | File | What it does |
 |------|--------------|
 | `eviction_set_builder.cu`        | Build a single eviction set for one target page. |
-| `reaction_to_counter_values.cu`  | Sweep access-count parameters `(phase_1, phase_2)` and record how set size reacts. |
-| `produce_unique_sets.cu`         | Discover the unique eviction sets across all pages. |
+| `reaction_to_counter_values.cu`  | Check the reaction of eviction policy based on counter values. |
+| `produce_unique_sets.cu`         | Discover the unique eviction sets across all sets. |
 | `collect_set_of_addresses.cu`    | Collect `TOTAL_SETS` unique sets and dump their physical addresses. |
 | `xor_brute_force.py`             | Reverse-engineer the XOR set-hash from collected address groups (GF(2) linear algebra). |
 | `precollected_addresses_per_sets.txt` | Example input for `xor_brute_force.py` (real captured data). |
@@ -74,10 +70,10 @@ Every CUDA tool takes the same options (all optional, sensible defaults shown):
 
 | Flag | Long form | Default | Meaning |
 |------|-----------|---------|---------|
-| `-M` | `--num-pages`          | 8   | Number of candidate pages. |
-| `-N` | `--accesses-thr`       | 256 | Access threshold before migration. |
+| `-M` | `--num-pages`          | 8   | Number of distractor pages. |
+| `-N` | `--accesses-thr`       | 256 | Access threshold for migration. |
 | `-d` | `--delta-n`            | 6   | Access-count margin. |
-| `-p` | `--page-size-mb`       | 2   | Page size in MB. |
+| `-p` | `--page-size-mb`       | 2   | MB page size. No need to change. |
 | `-E` | `--eviction-set-size`  | 16  | Target eviction-set size. |
 | `-T` | `--test`               | 5   | Repeat count for confirmation. |
 
@@ -156,7 +152,7 @@ It also verifies every address re-hashes to its group and reports the match rate
 ## Notes & gotchas
 
 - **Run from `page404_re/`** so relative `./texts/` paths resolve.
-- Results are timing-based and hardware-specific; expect run-to-run variation
+- Results are hardware-specific; expect run-to-run variation
   and tune `-N` / `-d` for your system if migrations are not detected.
 - `va_to_pa()` returns 0 and warns if a page is not resident — root is required
   for real PFNs from `pagemap`.
