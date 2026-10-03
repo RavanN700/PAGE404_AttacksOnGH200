@@ -1,1 +1,18 @@
 modified_page404_driver/open-gpu-kernel-modules/NVIDIA-Linux-aarch64-590.48.01.run
+
+# NVIDIA driver installer(s)
+*.run
+
+# Kernel module build artifacts
+*.o
+*.ko
+*.mod
+*.mod.c
+*.cmd
+*.d
+.tmp_versions/
+Module.symvers
+modules.order
+
+# macOS
+.DS_Store
