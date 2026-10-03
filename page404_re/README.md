@@ -115,9 +115,6 @@ python3 xor_brute_force.py precollected_addresses_per_sets.txt
 | `all_sets_pa`               | `collect_set_of_addresses` | Physical addresses grouped by set, separated by `====` lines. |
 | `same_set_pas_2.txt`        | `eviction_set_builder`     | Physical addresses of the recovered eviction set. |
 | `eviction_set_sizes_found_<k>` | `reaction_to_counter_values` | Set sizes found while sweeping parameters. |
-| `hw_counters_number_guess`  | all tools | Raw per-access latency timings. |
-| `migration_results`         | all tools | Per-trial migration flags (1 = distracted counter, 0 = migrated). |
-| `migration_points`          | all tools | Access index at which each migration was detected. |
 
 The whole `texts/` folder (and `build/`) is git-ignored; only
 `precollected_addresses_per_sets.txt` is kept as a checked-in example.

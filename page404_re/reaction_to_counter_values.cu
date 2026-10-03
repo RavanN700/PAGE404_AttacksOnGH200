@@ -697,26 +697,26 @@ int main(int argc, char **argv)
     }
     
 
-    fptr = fopen("./texts/hw_counters_number_guess", "w");
+    /* fptr = fopen("./texts/hw_counters_number_guess", "w");
     for (uint64_t k = 0; k < total_timings; k++) {
         //if (h_times[k] == 0) break;
         fprintf(fptr, "%lu \n", h_times[k]);
-    } 
+    }
     fclose(fptr);
 
     fptr = fopen("./texts/migration_results", "w");
     for (uint64_t k = 0; k < migration_results.size(); k++) {
         //if (h_times[k] == 0) break;
         fprintf(fptr, "%d \n", migration_results[k]);
-    } 
+    }
     fclose(fptr);
 
     fptr = fopen("./texts/migration_points", "w");
     for (uint64_t k = 0; k < migration_points.size(); k++) {
         //if (h_times[k] == 0) break;
         fprintf(fptr, "%d \n", migration_points[k]);
-    } 
-    fclose(fptr);
+    }
+    fclose(fptr); */
 
     
 
