@@ -1,4 +1,4 @@
-# page404_re — Reverse-engineering the GH200 memory set-index hash
+# Reverse-engineering the GH200 hardware access counters set-index hash functions
 
 Tools for recovering the **physical-address → set-index hash function** for hardware access counters on an
 NVIDIA **GH200 (Hopper)** system. The CUDA programs build *eviction sets* —
