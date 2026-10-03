@@ -16,3 +16,11 @@ modules.order
 
 # macOS
 .DS_Store
+
+# page404_re: build output, generated results, Python cache
+page404_re/build/
+page404_re/texts/
+
+# Python cache (anywhere in the repo)
+__pycache__/
+*.py[cod]
