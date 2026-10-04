@@ -159,7 +159,7 @@ python3 run_llm_inference.py --model distilgpt2 --task causal \
 |---------------------------------------|--------------------------------------------------------------|
 | `data/amps/<app>/<app>_<run>.txt`     | no need to use this data |
 | `data/counter/<app>/<app>_<run>.txt`  | Provenance header, then migration dela in terms of counter vaues.                     |
-| `data/prompts/prompts.txt`            | `app | prompt` for every run.                                |
+| `data/prompts/prompts.txt`            | `app \| prompt` for every run.                               |
 
 ---
 
@@ -167,8 +167,6 @@ python3 run_llm_inference.py --model distilgpt2 --task causal \
 
 - **`../build/migration_delay_side_channel not found`** — build it first
   (`cd .. && ./build.sh`).
-- **`ATTACKER_MIG and VICTIM_MIG are the same slice`** — set two different MIG
-  UUIDs.
 - **Gated-model / 401 errors** — `huggingface-cli login` and accept the license
   for Llama-3.2-1B and gemma-3-1b-it, or remove those lines (and their
   `VICTIM_LIST` entries).
