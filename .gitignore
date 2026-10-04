@@ -21,6 +21,16 @@ modules.order
 page404_re/build/
 page404_re/texts/
 
+# Compiled binaries from build.sh — build/ dirs hold only executables
+# (page404_covert_channel, page404_side_channel, and any other module).
+build/
+
+# Generated traces / collected data / analysis outputs — code is shipped,
+# not data, so these are produced by running the tools, never committed.
+texts/
+page404_side_channel/**/data/
+page404_side_channel/**/results/
+
 # Python cache (anywhere in the repo)
 __pycache__/
 *.py[cod]
