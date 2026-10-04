@@ -1,1 +1,31 @@
-This repository contains the artifact for PAGE404: Breaking Tenant Isolation Through Hardware-assisted Page Migration that will appear in the proceedings of IEEE Security and Privacy 2027.
+PAGE404: Breaking Tenant Isolation Through Hardware-assisted Page Migration
+===========================================================================
+
+This repository contains the artifact for PAGE404, to appear in the
+proceedings of IEEE Security and Privacy 2027. The work studies how
+hardware-assisted page migration on the NVIDIA GH200 (Hopper) leaks across
+MIG tenant boundaries, and was responsibly disclosed to NVIDIA.
+
+These are research proof-of-concept artifacts for a specific lab setup, not
+deployable or general-purpose attacks.
+
+Repository layout
+-----------------
+  page404_covert_channel/   Eviction-based covert channel between two MIG
+                            slices (sender + receiver). See its README.md.
+
+  page404_side_channel/     Migration-delay side channels: a shared CUDA
+                            collector plus two PoCs —
+                              prompt_length_estimate/  victim prompt-length estimation
+                              llm_fingerprinting/       victim model fingerprinting
+                            See page404_side_channel/README.md.
+
+  page404_re/               Reverse-engineering of the page-migration behaviour.
+
+  modified_page404_driver/  Modified NVIDIA GPU kernel driver used in the reevrse engineering study.
+
+Getting started
+---------------
+Each component is self-contained and has its own build/run instructions in the
+READMEs linked above. Target hardware is the NVIDIA GH200 with MIG enabled;
+build scripts assume the CUDA toolkit and nvcc are on PATH.
