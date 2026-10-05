@@ -24,9 +24,7 @@ When enabled, the driver also logs page activity to the kernel log for inspectio
 
 Requires the matching NVIDIA `.run` installer
 (`NVIDIA-Linux-aarch64-590.48.01.run`) placed in `open-gpu-kernel-modules/`.
-This file is large and is intentionally **not** tracked in git — download it
-separately before building.
-
+This file is large and is intentionally. You can get it from https://drive.google.com/file/d/1PD-81Lar_4nmeO-DfwAJbWpmli9DUL-e/view?usp=sharing
 ```bash
 ./driver_install.sh
 ```
