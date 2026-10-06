@@ -1,4 +1,4 @@
-PAGE404: Breaking Tenant Isolation Through Hardware-assisted Page Migration
+PAGE404: Breaking GPU Isolation Through Hardware-assisted Page Migration
 ===========================================================================
 
 This repository contains the artifact for PAGE404, to appear in the
