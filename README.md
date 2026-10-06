@@ -24,7 +24,7 @@ Repository layout
 
   page404_re/               Reverse-engineering of the page-migration behaviour.
 
-  modified_page404_driver/  Modified NVIDIA GPU kernel driver used in the reevrse engineering study.
+  modified_page404_driver/  Modified NVIDIA GPU kernel driver used in the reverse engineering study.
 ```
 
 Getting started
@@ -32,7 +32,7 @@ Getting started
 
 Each component is self-contained and has its own build/run instructions in the
 READMEs linked above. Target hardware is the NVIDIA GH200 with MIG enabled;
-build scripts assume the CUDA toolkit and nvcc are on PATH.
+build scripts assume the nvcc is on PATH.
 
 Generated build output and collected data are not tracked (see .gitignore);
-the repository ships the code to reproduce the results, not the data itself.
+The repository ships the code to reproduce the results, not the data itself.
